@@ -1,38 +1,48 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const container = document.body;
+document.addEventListener("DOMContentLoaded", function() {
+    const btn = document.getElementById('start-test');
+    const wave = document.querySelector('.wave-container');
+    const status = document.getElementById('status-msg');
+    const overlay = document.getElementById('scare-overlay');
+    
+    // O áudio final (Gemidão ou Susto)
+    const audioFinal = new Audio("https://www.myinstants.com/media/sounds/gemidao-do-zap.mp3");
+    
+    // Som de fundo (ruído branco bem baixinho) para dar realismo
+    const noise = new Audio("data:audio/wav;base64,UklGRjIAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA="); // Placeholder
+    noise.volume = 0.05; // Quase mudo
+    noise.loop = true;
 
-    // Função para criar pétalas caindo suavemente
-    function createFallingPetal() {
-        const petal = document.createElement('div');
-        petal.style.position = 'absolute';
-        petal.style.width = '15px';
-        petal.style.height = '15px';
-        petal.style.background = '#ff758f';
-        petal.style.borderRadius = '50% 0 50% 50%';
-        petal.style.opacity = Math.random();
-        petal.style.left = Math.random() * 100 + 'vw';
-        petal.style.top = '-20px';
-        petal.style.zIndex = '1';
+    btn.addEventListener('click', function() {
+        btn.classList.add('hidden');
+        wave.classList.add('active');
+        status.classList.remove('hidden');
         
-        // Animação via JS
-        const duration = Math.random() * 3 + 4;
-        petal.style.transition = `transform ${duration}s linear, top ${duration}s linear`;
+        // Inicia o ruído de fundo (Isso faz a pessoa pensar: "Ih, tá baixo mesmo")
+        noise.play().catch(() => {});
+
+        // Cronograma do golpe
+        // 0-8 seg: A pessoa está tentando ouvir o "locutor" inexistente e aumentando o volume.
         
-        container.appendChild(petal);
+        setTimeout(() => {
+            status.innerText = "Frequência atual: 18.5kHz. Analisando...";
+            status.style.color = "#ff3b30"; // Cor de alerta para prender a atenção
+        }, 5000);
 
         setTimeout(() => {
-            petal.style.transform = `rotate(${Math.random() * 360}deg) translateX(${Math.random() * 100 - 50}px)`;
-            petal.style.top = '110vh';
-        }, 100);
+            status.innerText = "Sinal detectado. Finalizando leitura de driver...";
+        }, 10000);
 
-        // Remove do DOM após cair
+        // O Grand Finale aos 13 segundos (tempo suficiente para ela colocar no máximo)
         setTimeout(() => {
-            petal.remove();
-        }, duration * 1000);
-    }
+            noise.pause();
+            audioFinal.volume = 1.0;
+            audioFinal.play();
+            
+            overlay.classList.remove('hidden');
 
-    // Inicia a chuva de pétalas após a flor principal subir
-    setTimeout(() => {
-        setInterval(createFallingPetal, 300);
-    }, 2000);
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            }
+        }, 13000);
+    });
 });
