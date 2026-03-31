@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: radial-gradient(circle, #1a0a1a, #000);
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.flower-container {
+    position: relative;
+    animation: slideUp 4s ease-out forwards;
+}
+
+/* Animação da flor subindo */
+@keyframes slideUp {
+    0% { transform: translateY(500px); opacity: 0; }
+    100% { transform: translateY(-150px); opacity: 1; }
+}
+
+.stem {
+    width: 8px;
+    height: 300px;
+    background: linear-gradient(to bottom, #2d5a27, #1e3d1a);
+    border-radius: 4px;
+}
+
+.petals {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.petal {
+    position: absolute;
+    width: 50px;
+    height: 80px;
+    background: #ff4d6d;
+    border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
+    transform-origin: bottom center;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+    animation: bloom 3s ease-in-out forwards 1.5s;
+    transform: scale(0) rotate(0deg);
+}
+
+/* Posicionamento das pétalas */
+.petal:nth-child(1) { --rot: 0deg; background: #ff4d6d; }
+.petal:nth-child(2) { --rot: 72deg; background: #ff758f; }
+.petal:nth-child(3) { --rot: 144deg; background: #c9184a; }
+.petal:nth-child(4) { --rot: 216deg; background: #ff8fa3; }
+.petal:nth-child(5) { --rot: 288deg; background: #ff4d6d; }
+
+@keyframes bloom {
+    0% { transform: scale(0) rotate(0deg); }
+    100% { transform: scale(1) rotate(var(--rot)); }
+}
+
+.center {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #ffb703;
+    border-radius: 50%;
+    top: 50px;
+    left: -15px;
+    z-index: 10;
+    box-shadow: 0 0 15px #fb8500;
+}
