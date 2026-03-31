@@ -1,71 +1,29 @@
-body {
-    margin: 0;
-    padding: 0;
-    background: radial-gradient(circle, #1a0a1a, #000);
-    overflow: hidden;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
+body { background: #fdfdfd; color: #333; display: flex; justify-content: center; align-items: center; height: 100vh; padding: 20px; }
 
-.flower-container {
-    position: relative;
-    animation: slideUp 4s ease-out forwards;
-}
+.test-wrapper { width: 100%; max-width: 400px; text-align: center; }
+.brand { font-weight: bold; font-size: 1.2rem; margin-bottom: 40px; color: #1a1a1a; }
+.brand span { color: #007aff; }
 
-/* Animação da flor subindo */
-@keyframes slideUp {
-    0% { transform: translateY(500px); opacity: 0; }
-    100% { transform: translateY(-150px); opacity: 1; }
-}
+.test-box { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #eee; }
+h3 { font-size: 1rem; margin-bottom: 10px; color: #007aff; text-transform: uppercase; letter-spacing: 1px; }
+p { font-size: 0.85rem; color: #666; margin-bottom: 25px; line-height: 1.4; }
 
-.stem {
-    width: 8px;
-    height: 300px;
-    background: linear-gradient(to bottom, #2d5a27, #1e3d1a);
-    border-radius: 4px;
-}
+.instruction { background: #f9f9f9; padding: 15px; border-radius: 8px; font-size: 0.8rem; border-left: 4px solid #007aff; text-align: left; margin-bottom: 20px; color: #444; }
 
-.petals {
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-}
+.wave-container { display: flex; justify-content: center; gap: 4px; height: 40px; margin-bottom: 25px; align-items: center; }
+.wave-bar { width: 3px; height: 10px; background: #ddd; border-radius: 2px; }
+.active .wave-bar { background: #007aff; animation: pulse 1.2s infinite ease-in-out; }
+.active .wave-bar:nth-child(2) { animation-delay: 0.2s; }
+.active .wave-bar:nth-child(3) { animation-delay: 0.4s; }
 
-.petal {
-    position: absolute;
-    width: 50px;
-    height: 80px;
-    background: #ff4d6d;
-    border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
-    transform-origin: bottom center;
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
-    animation: bloom 3s ease-in-out forwards 1.5s;
-    transform: scale(0) rotate(0deg);
-}
+@keyframes pulse { 0%, 100% { height: 10px; } 50% { height: 35px; } }
 
-/* Posicionamento das pétalas */
-.petal:nth-child(1) { --rot: 0deg; background: #ff4d6d; }
-.petal:nth-child(2) { --rot: 72deg; background: #ff758f; }
-.petal:nth-child(3) { --rot: 144deg; background: #c9184a; }
-.petal:nth-child(4) { --rot: 216deg; background: #ff8fa3; }
-.petal:nth-child(5) { --rot: 288deg; background: #ff4d6d; }
+button { background: #1a1a1a; color: white; border: none; padding: 16px 30px; border-radius: 8px; font-weight: bold; width: 100%; cursor: pointer; transition: 0.3s; }
+button:hover { background: #000; }
 
-@keyframes bloom {
-    0% { transform: scale(0) rotate(0deg); }
-    100% { transform: scale(1) rotate(var(--rot)); }
-}
+#status-msg { margin-top: 15px; font-size: 0.75rem; color: #007aff; font-weight: bold; }
 
-.center {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background: #ffb703;
-    border-radius: 50%;
-    top: 50px;
-    left: -15px;
-    z-index: 10;
-    box-shadow: 0 0 15px #fb8500;
-}
+.hidden { display: none !important; }
+#scare-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; z-index: 9999; display: flex; justify-content: center; align-items: center; }
+#scare-overlay img { width: 100%; height: 100%; object-fit: contain; }
