@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const overlay = document.getElementById('scare-overlay');
     
     // O áudio final (Gemidão ou Susto)
-    const audioFinal = new Audio("https://www.myinstants.com/media/sounds/gemidao-do-zap.mp3");
+    const audioFinal = new Audio("https://www.myinstants.com/media/sounds/fahhhhhhhhhhhhhh.mp3");
     
     // Som de fundo (ruído branco bem baixinho) para dar realismo
     const noise = new Audio("data:audio/wav;base64,UklGRjIAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA="); // Placeholder
